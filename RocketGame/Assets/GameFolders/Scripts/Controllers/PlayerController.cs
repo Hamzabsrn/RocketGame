@@ -1,21 +1,22 @@
 using DefaultAction;
 using System.Collections;
 using System.Collections.Generic;
+using PlayerMover;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float _force;
-    private Rigidbody _rigidbody;
     DefaultInput _input;
+
+    Mover _mover;
 
     bool _isForceUp;
 
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         _input = new DefaultInput();
+        _mover = new Mover(rigidbody: GetComponent<Rigidbody>());
     }
     private void Update()
     {
@@ -32,10 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isForceUp)
         {
-            _rigidbody.AddForce(Vector3.up * _force * Time.deltaTime);
+            _mover.FixedTick();
         }
-
-
-
     }
 }
