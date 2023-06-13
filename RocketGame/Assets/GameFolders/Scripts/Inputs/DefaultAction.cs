@@ -37,6 +37,15 @@ namespace DefaultAction
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftRight"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a6fe561b-08ec-4e9f-b9ec-90511dd84ab3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -50,6 +59,39 @@ namespace DefaultAction
                     ""action"": ""ForceUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""df84605b-91c8-49d0-b04c-aeb1a3d6b384"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a2019b6d-bfc9-412a-9de7-421ec7b8925d"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""6f8357b8-227c-47da-9b23-659c719fdf32"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -59,6 +101,7 @@ namespace DefaultAction
             // Rocket
             m_Rocket = asset.FindActionMap("Rocket", throwIfNotFound: true);
             m_Rocket_ForceUp = m_Rocket.FindAction("ForceUp", throwIfNotFound: true);
+            m_Rocket_LeftRight = m_Rocket.FindAction("LeftRight", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -119,11 +162,13 @@ namespace DefaultAction
         private readonly InputActionMap m_Rocket;
         private IRocketActions m_RocketActionsCallbackInterface;
         private readonly InputAction m_Rocket_ForceUp;
+        private readonly InputAction m_Rocket_LeftRight;
         public struct RocketActions
         {
             private @DefaultAction m_Wrapper;
             public RocketActions(@DefaultAction wrapper) { m_Wrapper = wrapper; }
             public InputAction @ForceUp => m_Wrapper.m_Rocket_ForceUp;
+            public InputAction @LeftRight => m_Wrapper.m_Rocket_LeftRight;
             public InputActionMap Get() { return m_Wrapper.m_Rocket; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -136,6 +181,9 @@ namespace DefaultAction
                     @ForceUp.started -= m_Wrapper.m_RocketActionsCallbackInterface.OnForceUp;
                     @ForceUp.performed -= m_Wrapper.m_RocketActionsCallbackInterface.OnForceUp;
                     @ForceUp.canceled -= m_Wrapper.m_RocketActionsCallbackInterface.OnForceUp;
+                    @LeftRight.started -= m_Wrapper.m_RocketActionsCallbackInterface.OnLeftRight;
+                    @LeftRight.performed -= m_Wrapper.m_RocketActionsCallbackInterface.OnLeftRight;
+                    @LeftRight.canceled -= m_Wrapper.m_RocketActionsCallbackInterface.OnLeftRight;
                 }
                 m_Wrapper.m_RocketActionsCallbackInterface = instance;
                 if (instance != null)
@@ -143,6 +191,9 @@ namespace DefaultAction
                     @ForceUp.started += instance.OnForceUp;
                     @ForceUp.performed += instance.OnForceUp;
                     @ForceUp.canceled += instance.OnForceUp;
+                    @LeftRight.started += instance.OnLeftRight;
+                    @LeftRight.performed += instance.OnLeftRight;
+                    @LeftRight.canceled += instance.OnLeftRight;
                 }
             }
         }
@@ -150,6 +201,7 @@ namespace DefaultAction
         public interface IRocketActions
         {
             void OnForceUp(InputAction.CallbackContext context);
+            void OnLeftRight(InputAction.CallbackContext context);
         }
     }
 }
