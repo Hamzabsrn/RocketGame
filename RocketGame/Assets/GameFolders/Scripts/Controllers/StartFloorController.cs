@@ -12,7 +12,7 @@ namespace Floor
 
             if (player != null)
             {
-                Destroy(this.gameObject);
+                Destroy(this.gameObject,3f);
             }
         }
 

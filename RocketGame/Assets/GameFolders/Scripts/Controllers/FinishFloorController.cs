@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FinishFloor
-{   public class FinishFloorController : MonoBehaviour
+{
+    public class FinishFloorController : MonoBehaviour
     {
         [SerializeField] GameObject _finishFireWork;
         [SerializeField] GameObject _finishLight;
@@ -13,14 +14,15 @@ namespace FinishFloor
         private void OnCollisionEnter(Collision other)
         {
             PlayerController player = other.collider.GetComponent<PlayerController>();
-            if (player ==null)
+            if (player == null)
             {
                 return;
             }
-            if (other.GetContact(0).normal.y==-1)
+            if (other.GetContact(0).normal.y == -1)
             {
                 _finishFireWork.SetActive(true);
-                _finishLight.SetActive(true); ;
+                _finishLight.SetActive(true);
+                GameManager.instance.MissionSucced();
             }
             else
             {
