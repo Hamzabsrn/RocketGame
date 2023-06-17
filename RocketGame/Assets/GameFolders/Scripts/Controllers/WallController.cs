@@ -1,3 +1,4 @@
+using GameM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Wall
             PlayerController player = other.collider.GetComponent<PlayerController>();
             if (player != null)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                GameManager.instance.GameOver();
             }
         }
 

@@ -5,6 +5,7 @@ using PlayerMover;
 using RotaterMove;
 using UnityEngine;
 using PlayerFuel;
+using GameM;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     Rotater _rotater;
     Fuel _fuel;
 
+    bool _canMove;
     bool _canForceUp;
     float _leftRight;
 
@@ -29,8 +31,22 @@ public class PlayerController : MonoBehaviour
         _rotater = new Rotater(playerController: this);
         _fuel = GetComponent<Fuel>();
     }
+    private void Start()
+    {
+        _canMove = true;
+    }
+    private void OnEnable()
+    {
+        GameManager.instance.OnGameOver += HandleOnEventTriggered;
+    }
+    private void OnDisable()
+    {
+        GameManager.instance.OnGameOver -= HandleOnEventTriggered;
+    }
     private void Update()
     {
+        if (!_canMove)
+        { return; }
         if (_input.isForceUp && !_fuel.IsEmpty)
         {
             _canForceUp = true;
@@ -51,5 +67,12 @@ public class PlayerController : MonoBehaviour
         }
         _rotater.FixedTick(_leftRight);
 
+    }
+    private void HandleOnEventTriggered()
+    {
+        _canMove = false;
+        _canForceUp = false;
+        _leftRight = 0f;
+        _fuel.FuelIncrease(0f);
     }
 }

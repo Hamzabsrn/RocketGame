@@ -1,3 +1,4 @@
+using GameM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace FinishFloor
             }
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                GameManager.instance.GameOver();
             }
         }
 
