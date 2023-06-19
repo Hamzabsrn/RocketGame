@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-namespace GameM
-{
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance { get; private set; }
@@ -59,4 +56,4 @@ namespace GameM
             Application.Quit();
         }
     }
-}
+

@@ -5,7 +5,6 @@ using PlayerMover;
 using RotaterMove;
 using UnityEngine;
 using PlayerFuel;
-using GameM;
 
 public class PlayerController : MonoBehaviour
 {
