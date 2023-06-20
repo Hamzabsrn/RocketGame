@@ -8,27 +8,23 @@ namespace FinishFloor
     public class FinishFloorController : MonoBehaviour
     {
         [SerializeField] GameObject _finishFireWork;
-        [SerializeField] GameObject _finishLight;
 
         private void OnCollisionEnter(Collision other)
         {
             PlayerController player = other.collider.GetComponent<PlayerController>();
-            if (player == null)
-            {
-                return;
-            }
+
+            if (player == null) return;
+
             if (other.GetContact(0).normal.y == -1)
             {
-                _finishFireWork.SetActive(true);
-                _finishLight.SetActive(true);
+                _finishFireWork.gameObject.SetActive(true);
                 GameManager.instance.MissionSucced();
             }
             else
             {
                 GameManager.instance.GameOver();
             }
+
         }
-
-
     }
 }
