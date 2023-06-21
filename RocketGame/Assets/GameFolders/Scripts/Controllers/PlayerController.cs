@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable()
     {
-        GameManager.instance.OnGameOver += HandleOnEventTriggered;
-        GameManager.instance.OnMissionSucced += HandleOnEventTriggered;
+        GameManager.Instance.OnGameOver += HandleOnEventTriggered;
+        GameManager.Instance.OnMissionSucced += HandleOnEventTriggered;
     }
     private void OnDisable()
     {
-        GameManager.instance.OnGameOver -= HandleOnEventTriggered;
-        GameManager.instance.OnMissionSucced -= HandleOnEventTriggered;
+        GameManager.Instance.OnGameOver -= HandleOnEventTriggered;
+        GameManager.Instance.OnMissionSucced -= HandleOnEventTriggered;
     }
     private void Update()
     {

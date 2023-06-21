@@ -17,17 +17,18 @@ namespace UI
         }
         private void OnEnable()
         {
-            GameManager.instance.OnMissionSucced += HandleOnMissionSucced;
+            GameManager.Instance.OnMissionSucced += HandleOnMissionSucced;
         }
 
         private void OnDisable()
         {
-            GameManager.instance.OnMissionSucced -= HandleOnMissionSucced;
+            GameManager.Instance.OnMissionSucced -= HandleOnMissionSucced;
         }
         private void HandleOnMissionSucced()
         {
             if (!_gameWinPanel.activeSelf)
             {
+                Debug.Log("AÇILDI");
                 _gameWinPanel.SetActive(true);
             }
         }

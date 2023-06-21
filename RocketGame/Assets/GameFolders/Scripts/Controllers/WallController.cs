@@ -12,7 +12,7 @@ namespace Wall
             PlayerController player = other.collider.GetComponent<PlayerController>();
             if (player != null&&player.CanMove)
             {
-                GameManager.instance.GameOver();
+                GameManager.Instance.GameOver();
             }
         }
 

@@ -7,11 +7,11 @@ namespace UI
     {
         public void StartClicked()
         {
-            GameManager.instance.LoadlevelScene(1);
+            GameManager.Instance.LoadlevelScene(1);
         }
         public void ExitClicked()
         {
-            GameManager.instance.Exit();
+            GameManager.Instance.Exit();
         }
     }
 

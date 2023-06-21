@@ -8,11 +8,11 @@ namespace UI
     {
         public void YesClicked()
         {
-            GameManager.instance.LoadlevelScene();
+            GameManager.Instance.LoadlevelScene();
         }
         public void NoClicked() 
         {
-            GameManager.instance.LoadMenuScene();
+            GameManager.Instance.LoadMenuScene();
         }
 
     }

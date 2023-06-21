@@ -14,11 +14,11 @@ namespace UI
         }
         private void OnEnable()
         {
-            GameManager.instance.OnGameOver += HandleOnGameOver;
+            GameManager.Instance.OnGameOver += HandleOnGameOver;
         }
         private void OnDisable()
         {
-            GameManager.instance.OnGameOver -= HandleOnGameOver;
+            GameManager.Instance.OnGameOver -= HandleOnGameOver;
         }
         private void HandleOnGameOver()
         {

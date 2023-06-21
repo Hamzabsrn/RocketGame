@@ -13,18 +13,17 @@ namespace FinishFloor
         {
             PlayerController player = other.collider.GetComponent<PlayerController>();
 
-            if (player == null||player.CanMove) return;
+            if (player == null || !player.CanMove) return;
 
             if (other.GetContact(0).normal.y == -1)
             {
                 _finishFireWork.gameObject.SetActive(true);
-                GameManager.instance.MissionSucced();
+                GameManager.Instance.MissionSucced();
             }
             else
             {
-                GameManager.instance.GameOver();
+                GameManager.Instance.GameOver();
             }
-
         }
     }
 }

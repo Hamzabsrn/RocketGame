@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
     public class GameManager : MonoBehaviour
     {
-        public static GameManager instance { get; private set; }
+        public static GameManager Instance { get; private set; }
 
         public event System.Action OnGameOver;
         public event System.Action OnMissionSucced;
@@ -16,9 +16,9 @@ using UnityEngine.SceneManagement;
         }
         private void SingletonThisGameobject()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(this.gameObject);
             }
             else
@@ -28,11 +28,11 @@ using UnityEngine.SceneManagement;
         }
         public void GameOver()
         {
-            OnGameOver.Invoke();
+            OnGameOver?.Invoke();
         }
         public void MissionSucced()
         {
-            OnMissionSucced.Invoke();
+            OnMissionSucced?.Invoke();
         }
         public void LoadlevelScene(int levelIndex = 0)
         {
