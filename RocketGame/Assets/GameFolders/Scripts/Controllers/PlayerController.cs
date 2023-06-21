@@ -10,16 +10,16 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _turnSpeed = 10f;
     [SerializeField] float _force = 55f;
+    [SerializeField] bool _canMove;
 
     DefaultInput _input;
     Mover _mover;
     Rotater _rotater;
     Fuel _fuel;
 
-    bool _canMove;
     bool _canForceUp;
     float _leftRight;
-
+    public bool CanMove => _canMove; 
     public float TurnSpeed => _turnSpeed;
     public float Force => _force;
 
