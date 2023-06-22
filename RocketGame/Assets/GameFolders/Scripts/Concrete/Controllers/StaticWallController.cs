@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Wall
 {
-    public class MoverWallController : MonoBehaviour
+    public class StaticWallController : WallController
     {
 
     }
