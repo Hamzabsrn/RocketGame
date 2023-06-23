@@ -9,7 +9,6 @@ namespace PlayerFuel
         [SerializeField] float _maxFuel = 100f;
         [SerializeField] float _currentFuel;
 
-
         public bool IsEmpty => _currentFuel < 1f;
         public float CurrentFuel => _currentFuel / _maxFuel;
 
@@ -23,15 +22,16 @@ namespace PlayerFuel
             _currentFuel += increase;
             _currentFuel = Mathf.Min(_currentFuel, _maxFuel);
 
+            SoundManager.Instance.StopSound(0);
         }
 
         public void FuelDecrease(float decrease)
         {
             _currentFuel -= decrease;
             _currentFuel = Mathf.Max(_currentFuel, 0f);
+
+            SoundManager.Instance.PlaySound(0);
         }
-
-
     }
 
 }

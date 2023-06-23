@@ -28,7 +28,6 @@ namespace UI
         {
             if (!_gameWinPanel.activeSelf)
             {
-                Debug.Log("AÇILDI");
                 _gameWinPanel.SetActive(true);
             }
         }
